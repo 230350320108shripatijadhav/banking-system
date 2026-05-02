@@ -1,1 +1,25 @@
-.idea/**
+# Node (Angular)
+node_modules/
+dist/
+.angular/
+
+# Java (Spring Boot)
+target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Spring Boot config (secrets)
+.env
+application-prod.properties

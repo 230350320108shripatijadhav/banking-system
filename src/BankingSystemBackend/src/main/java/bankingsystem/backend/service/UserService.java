@@ -5,14 +5,13 @@ import bankingsystem.backend.dao.UserRepository;
 import bankingsystem.backend.dto.Constants;
 import bankingsystem.backend.entity.User;
 import bankingsystem.backend.exception.BadRequestException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.joda.time.DateTime;
-import org.joda.time.Years;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Service
@@ -27,25 +26,29 @@ public class UserService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    private final Logger logger = LogManager.getLogger(getClass());
-
     public String createUser(User user) {
+
         if (userRepository.findByContactNo(user.getContactNo()) != null) {
-            logger.info("user already exist with mobile number : {}", user.getContactNo());
             throw new BadRequestException(Constants.USER_EXIST);
         }
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPin(encoder.encode(user.getPin()));
-        Date now = new Date();
-        user.setAge(getAgeBetween(user.getDob(), now));
-        user = userRepository.save(user);
+
+        user.setAge(calculateAge(user.getDob()));
+
+        userRepository.save(user);
+
         return accountService.createAccount(user);
     }
 
-    private int getAgeBetween(Date dob, Date now) {
-        DateTime dobjoda = new DateTime(dob);
-        DateTime nowjoda = new DateTime(now);
-        return Years.yearsBetween(dobjoda, nowjoda).getYears();
+    private int calculateAge(Date dob) {
+
+        LocalDate birthDate = dob.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+
+        return Period.between(birthDate, LocalDate.now()).getYears();
     }
 
     public User getUserFromToken(String token) {
@@ -54,16 +57,20 @@ public class UserService {
     }
 
     public String updateUser(User user) {
-        User existingUser = userRepository.findByContactNo(user.getContactNo());
-        if (existingUser==null){
-            logger.info("User not found with contact no : {}",user.getContactNo());
-            throw new BadRequestException("User not found with contact no : "+user.getContactNo());
+
+        User existing = userRepository.findByContactNo(user.getContactNo());
+
+        if (existing == null) {
+            throw new BadRequestException("User not found");
         }
-        user.setId(existingUser.getId());
-        user.setContactNo(existingUser.getContactNo());
-        user.setPin(existingUser.getPin());
-        user.setAge(getAgeBetween(user.getDob(),new Date()));
+
+        user.setId(existing.getId());
+        user.setPin(existing.getPin());
+
+        user.setAge(calculateAge(user.getDob()));
+
         userRepository.save(user);
+
         return Constants.USER_UPDATED;
     }
 }

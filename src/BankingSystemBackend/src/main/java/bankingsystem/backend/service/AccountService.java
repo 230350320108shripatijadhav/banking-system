@@ -19,15 +19,12 @@ public class AccountService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
-    TransactionService transactionService;
-
     private final Logger logger = LogManager.getLogger(getClass());
 
     public String createAccount(User user) {
         Account account = new Account();
         account.setAccountNo(user.getContactNo());
-        account.setBalance((long) 1000);
+        account.setBalance(1000L);
         accountRepository.save(account);
         return Constants.ACCOUNT_CREATED;
     }

@@ -58,7 +58,7 @@ public class AccountController {
     @GetMapping("/transaction")
     public ResponseEntity<List<Transaction>> getTransactionHistory(HttpServletRequest request, HttpServletResponse response) {
         try {
-            return ResponseEntity.ok(transactionService.getTransactionHostory(request.getHeader("token")));
+            return ResponseEntity.ok(transactionService.getTransactionHistory(request.getHeader("token")));
         } catch (Exception e) {
             logger.error("error produced getting transaction history : {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ArrayList<>());
