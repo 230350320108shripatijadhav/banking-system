@@ -1,97 +1,99 @@
-# Banking System With Spring Boot And Angular with Spring Security
+💳 Banking System (Spring Boot + Angular + Spring Security)
+🚀 Overview
 
-## Introduction
+A full-stack Banking System application built using Spring Boot (Backend) and Angular (Frontend) with Spring Security authentication.
 
-This project helps us to understand the basic working of Bank accounts. Some of the functionalities implemented are
-- Account creation
-- Transactions between two accounts
-- Fetching of the transaction history
+This project simulates real-world banking operations like account management, secure transactions, and transaction history tracking.
 
-## Prerequisites
-- java 1.8.x
-- maven 3.x
-- npm
+🎯 Key Features
+🔐 Secure Login & Registration (Spring Security + JWT)
+🏦 Account Creation & Management
+💸 Money Transfer between accounts
+📊 Transaction History tracking
+👤 User Profile Management
+⚡ Responsive UI (Angular + Bootstrap)
+🛠️ Tech Stack
+🔙 Backend
+Java 17
+Spring Boot
+Spring Security
+JWT Authentication
+JPA / Hibernate
+MySQL
+🎨 Frontend
+Angular 9
+TypeScript
+Bootstrap
+HTML/CSS
+⚙️ Tools
+Maven
+Node.js
+npm
+Git & GitHub
+📁 Project Structure
+BankingSystem/
+ ├── BankingSystemBackend/
+ ├── BankingSystemFrontend/
+ ├── readme-images/
+ └── README.md
+⚙️ Prerequisites
+Java 17+
+Maven 3+
+Node.js (v16 recommended)
+npm
+MySQL
+🔧 Backend Setup
+1️⃣ Clone Repository
+git clone https://github.com/230350320108shripatijadhav/banking-system.git
+2️⃣ Navigate to Backend
+cd BankingSystem/BankingSystemBackend
+3️⃣ Build Project
+mvn clean install
+4️⃣ Run Application
+mvn spring-boot:run
+📡 REST APIs
+Method	Endpoint	Description
+POST	/api/signup	Register User
+POST	/api/user	Create User
+GET	/api/user	Get User
+PUT	/api/user	Update User
+GET	/api/account	Get Account
+POST	/api/transfer	Transfer Money
+GET	/api/transaction	Transaction History
+🎨 Frontend Setup
+1️⃣ Navigate to Frontend
+cd BankingSystem/BankingSystemFrontend
+2️⃣ Install Dependencies
+npm install
+3️⃣ Run Application
+npm start
+🌐 Open in Browser
+http://localhost:4200/
+📸 Screenshots
+🔐 Login Page
+🏠 Home Page
+👤 Profile Page
+💸 Transfer Money
+📊 Transaction History
+🔮 Future Improvements
+📱 Mobile responsive UI improvements
+📧 Email notifications for transactions
+📊 Dashboard analytics
+☁️ Cloud deployment (AWS / Azure)
+🧾 PDF account statement generation
+👨‍💻 Author
 
-### Steps To Setup Backend
+Shripati Jadhav
+💼 Full Stack Developer (Java + Angular)
 
-**1. Clone the repository**
-```bash
-    git clone https://github.com/AbhayKatharotiya/BankingSystem.git
-```
+🤝 Connect
 
-**2. Move to root directory of backend**
+GitHub: https://github.com/230350320108shripatijadhav
 
-**3. Build project**
-```bash
-    mvn clean install
-``` 
+⭐ Project Highlights
 
-**4. Run project** 
-```bash
-    java -jar target/backend-0.0.1-SNAPSHOT.jar
-``` 
-- Alternatively, you can run the app without packaging it using -
-```bash
-    mvn spring-boot:run
-```
-  #### Explore apis in backend
+✔ Real-world banking workflow
+✔ Secure authentication (JWT)
+✔ Clean REST API design
+✔ Full-stack integration
 
-The app defines following APIs. 
- 
-```   
-    POST /api/signup   
-    POST /api/user
-    GET /api/user
-    PUT /api/user
-    GET /api/account
-    POST /api/transfer
-    GET /api/transaction      
-```
-
-### Steps To Setup Frontend
-
-**1. Move To Frontend Derectory**
-
-**2. Install Package**
-```bash 
-    npm install
-```
-
-**3. Run Project**
-```bash
-    npm start
-```
-
-**4. Open url**
-```bash
-    http://localhost:4200/
-```
-# Application Screenshots
-
-### Login
-
-![Login image](https://github.com/AbhayKatharotiya/BankingSystem/blob/master/readme-images/login.PNG?raw=true)
-
-### Register
-
-![Register image](https://github.com/AbhayKatharotiya/BankingSystem/blob/master/readme-images/register%20new.PNG?raw=true)
-
-### Home
-
-![Home Page image](https://github.com/AbhayKatharotiya/BankingSystem/blob/master/readme-images/home.PNG?raw=true)
-
-### Profile
-
-![Profile image](https://github.com/AbhayKatharotiya/BankingSystem/blob/master/readme-images/profile.PNG?raw=true)
-
-### Transaction History
-
-![History image](https://github.com/AbhayKatharotiya/BankingSystem/blob/master/readme-images/history.PNG?raw=true)
-
-### Transfer
-
-![Transfer image](https://github.com/AbhayKatharotiya/BankingSystem/blob/master/readme-images/transfer.PNG?raw=true)
-
-
-# Future Extension
-If a further chance is given to take the project ahead, then with the considerable knowledge in Angular and Spring Boot, I would be happy to invest my skills to build a creative and helpful solution for the society.
